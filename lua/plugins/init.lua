@@ -73,5 +73,8 @@ return {
     config = function ()
       require("configs.nvim-lint.lua")
     end
+  },
+  {
+    "dnlhc/glance.nvim"
   }
 }
