@@ -75,6 +75,7 @@ return {
     end
   },
   {
-    "dnlhc/glance.nvim"
+    "dnlhc/glance.nvim",
+    lazy = false
   }
 }
