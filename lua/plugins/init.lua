@@ -15,24 +15,30 @@ return {
     end,
   },
   {
-  	"williamboman/mason.nvim",
-  	opts = {
-  		-- ensure_installed = {
-  		-- 	"lua-language-server", "stylua",
-  		-- 	"html-lsp", "css-lsp" , "prettierd", "eslint_d",
-    --     "tsserver"
-  		-- },
-  	},
+    "williamboman/mason.nvim",
+    opts = {
+      -- ensure_installed = {
+      -- 	"lua-language-server", "stylua",
+      -- 	"html-lsp", "css-lsp" , "prettierd", "eslint_d",
+      --     "tsserver"
+      -- },
+    },
   },
 
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  			"vim", "lua", "vimdoc",
-       "html", "css", "tsx", "typescript", "javascript"
-  		},
-  	},
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+        "tsx",
+        "typescript",
+        "javascript",
+      },
+    },
   },
   {
     "kevinhwang91/nvim-ufo",
@@ -41,9 +47,9 @@ return {
       {
         "luukvbaal/statuscol.nvim",
         dependencies = "kevinhwang91/promise-async",
-        config = function ()
-          local builtin = require("statuscol.builtin")
-          require("statuscol").setup({
+        config = function()
+          local builtin = require "statuscol.builtin"
+          require("statuscol").setup {
             ft_ignore = { "NvimTree", "Outline" },
             segments = {
               hl = "FoldColumn",
@@ -52,30 +58,41 @@ return {
               { text = { builtin.lnumfunc, "  " }, click = "v:lua.ScLa" },
               { text = { builtin.foldfunc, "  " }, click = "v:lua.ScFa" },
             },
-          })
+          }
         end,
-      }
+      },
     },
-    init = function ()
+    init = function()
       vim.o.foldcolumn = "1"
       vim.o.foldlevel = 99
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
     end,
     opts = {
-      provider_selector = function ()
+      provider_selector = function()
         return { "treesitter", "indent" }
       end,
     },
   },
   {
     "mfussenegger/nvim-lint",
-    config = function ()
-      require("configs.nvim-lint.lua")
-    end
+    config = function()
+      require "configs.nvim-lint.lua"
+    end,
   },
   {
     "dnlhc/glance.nvim",
-    lazy = false
-  }
+    lazy = false,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = function()
+      return require "configs.nvimtree"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "nvimtree")
+      require("nvim-tree").setup(opts)
+    end,
+  },
 }
