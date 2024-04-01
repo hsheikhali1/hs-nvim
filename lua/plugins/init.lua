@@ -77,7 +77,7 @@ return {
   {
     "mfussenegger/nvim-lint",
     config = function()
-      require "configs.nvim-lint.lua"
+      require "configs.nvim-lint"
     end,
   },
   {
@@ -95,4 +95,8 @@ return {
       require("nvim-tree").setup(opts)
     end,
   },
+  {
+    "sindrets/diffview.nvim",
+    lazy = false,
+  }
 }
