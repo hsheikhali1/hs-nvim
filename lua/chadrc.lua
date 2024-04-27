@@ -2,7 +2,7 @@
 local M = {}
 
 M.ui = {
-  theme = "tokyonight",
+  theme = "bearded-arc",
   statusline = {
     theme = "vscode",
   },
